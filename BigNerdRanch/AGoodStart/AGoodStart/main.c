@@ -21,10 +21,12 @@
  * using breakpoint
  * look for BeerSong view
  * Format String
- * Numebers (signed, unsigned)
+ * numebers (signed, unsigned)
  * NSInteger
  * NSUInteger
- * Loops
+ * loops
+ * adresses
+ * structs
  */
 
 void congratulateStudent(char *student, char *course, int numDays){
@@ -71,6 +73,30 @@ int  main(int argc, const char * argv[]) {
     printf("%s is cool!\n", name);
     
 
+    //Adresses
+    printf("weight is stored in %p", &weight);
+    
+    //Structs - static
+    struct Person{
+        float height;
+        int weight;
+    };
+    
+    //best declaration for structs - dynamic
+    typedef  struct{
+     
+        float height;
+        int weight;
+    } person;
+    
+    struct Person mikey;
+    
+    mikey.height = 10;
+    mikey.weight = 12;
+    
+    printf("Mickey height is %f\n",mikey.height);
+    
+    
     return  0;
 }
 
