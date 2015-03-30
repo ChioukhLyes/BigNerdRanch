@@ -13,9 +13,7 @@ int main(int argc, const char * argv[]) {
     printf("It was the best of times.\n");
     printf("It was the wrong of times.\n");
     
-    /*mlml
-     mlml
-     */
+    /**/
     
     return  0;
 }
