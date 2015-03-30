@@ -6,14 +6,71 @@
 //  Copyright (c) 2015 Excilys. All rights reserved.
 //
 
-#include <stdio.h>
+#include  <stdio.h>
+#include  <unistd.h>
+#include  <stdio.h>
+#include  <readline/readline.h>
 
-int main(int argc, const char * argv[]) {
-    //print the beginning of the novel
-    printf("It was the best of times.\n");
-    printf("It was the wrong of times.\n");
+/**
+ * variables
+ * if/else blocs
+ * functions
+ * sleeping
+ * global and local declaration
+ * recursion
+ * using breakpoint
+ * look for BeerSong view
+ * Format String
+ * Numebers (signed, unsigned)
+ * NSInteger
+ * NSUInteger
+ * Loops
+ */
+
+void congratulateStudent(char *student, char *course, int numDays){
+    int k = 1;
+    printf("%s has dons much %s Programming as I could fit into %d days.\n", student, course, numDays);
+    printf("%d\n",k);
+}
+
+int  main(int argc, const char * argv[]) {
+    float weight;
+    float cookingTime;
     
-    /**/
+    weight = 14.2;
+    cookingTime = 15.0 + 15.0 * weight;
     
+    printf("Cook it for %f minutes.\n", cookingTime);
+    
+    if(cookingTime < 0){
+        printf("true\n");
+    }
+    else{
+        printf("false\n");
+    }
+    
+    /*Calling*/
+    congratulateStudent("Abdou", "English", 4);
+    sleep(2);
+    congratulateStudent("Hichem", "Java", 5);
+    congratulateStudent("Walid", "World", 2);
+    congratulateStudent("Mimi", "Cook", 1);
+    
+    
+    
+    int x =255;
+    unsigned long y = 55;
+    
+    printf("y is %lu.\n",y);
+    
+    printf("x is %d.\n",x);
+    printf("x in octal is %o.\n",x);
+    printf("x in hexadecimal is %x.\n",x);
+    
+    const char *name = readline(NULL);
+    printf("%s is cool!\n", name);
+    
+
     return  0;
 }
+
