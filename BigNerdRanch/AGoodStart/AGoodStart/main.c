@@ -8,7 +8,7 @@
 
 #include  <stdio.h>
 #include  <unistd.h>
-#include  <stdio.h>
+#include  <stdlib.h>
 #include  <readline/readline.h>
 
 /**
@@ -27,12 +27,26 @@
  * loops
  * adresses
  * structs
+ * the heaps (malloc and free)
  */
 
 void congratulateStudent(char *student, char *course, int numDays){
     int k = 1;
     printf("%s has dons much %s Programming as I could fit into %d days.\n", student, course, numDays);
     printf("%d\n",k);
+}
+
+//best declaration for structs - dynamic
+typedef  struct{
+    
+    float height;
+    int weight;
+} person;
+
+
+
+float getWeight(person *p){
+    return p->weight;
 }
 
 int  main(int argc, const char * argv[]) {
@@ -82,20 +96,27 @@ int  main(int argc, const char * argv[]) {
         int weight;
     };
     
-    //best declaration for structs - dynamic
-    typedef  struct{
-     
-        float height;
-        int weight;
-    } person;
-    
-    struct Person mikey;
+       struct Person mikey;
     
     mikey.height = 10;
     mikey.weight = 12;
     
     printf("Mickey height is %f\n",mikey.height);
     
+    
+    person *per = (person *)malloc(sizeof(person));
+    
+    per->height = 12;
+    per->weight = 20;
+    
+    float weightgetting = getWeight(per);
+    
+    printf("Height %f \n",per->height);
+    printf("Weight %f \n",weightgetting);
+    
+    free(per);
+    
+    per = NULL;
     
     return  0;
 }
