@@ -9,33 +9,48 @@
 
 #import <Foundation/Foundation.h>
 #import "../BNREmployee.h"
+#import "BNRAsset.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        // Create an array of BNREmployee objects
+        NSMutableArray *employees = [[NSMutableArray alloc] init];
         
-        //instance
-        BNREmployee *mikey = [[BNREmployee alloc] init];
+        for (int i = 0; i < 10; i++) {
+            //Create an instance of BNREmployee
+            BNREmployee *mikey = [[BNREmployee alloc] init];
+            
+            // Give the instance variables interesting values
+            mikey.weightInKilos = 90 + i;
+            mikey.heightInMeters = 1.8 - i/10.0;
+            mikey.employeeID = i;
         
-        //giv variables instance values
-        mikey.employeeID = 12;
-        mikey.hireDate = [NSDate dateWithNaturalLanguageString:@"Aug 2nd, 2010"];
-        mikey.weightInKilos = 96;
-        mikey.heightInMeters = 1.8;
+            //Put  employee in the employees array
+            [employees addObject:mikey];
+        }
         
+        for (int i = 0; i < 10; i++) {
+            
+            BNRAsset *asset = [[BNRAsset alloc] init];
+            NSString *currentLabel = [NSString stringWithFormat:@"laptop %d", i];
+            asset.label = currentLabel;
+            asset.resaleValue = 350 + i * 17;
+            
+            NSUInteger randomIndex = random() % [employees count];
+            
+            BNREmployee *randomEmployee = [employees objectAtIndex:randomIndex];
         
-        //log instance variables using the getters
-        float height = mikey.heightInMeters;
-        int weight  =  mikey.weightInKilos;
+            [randomEmployee addAssets:asset];
+        }
         
-        NSLog(@"mikey is %.2f meters and weights %d kg", height, weight);
-        NSLog(@"Employee %d hired on %@", mikey.employeeID, mikey.hireDate);
+        NSLog(@"Employees: %@", employees);
+        NSLog(@"Giving up ownership of one employee");
         
+        [employees removeObjectAtIndex:5];
+        NSLog(@"Giving up ownership of arrays");
         
-        //log values using cutom methods
-        float bmi = [mikey bodyMassIndex];
-        double years = [mikey yearsOfEmployment];
-        
-        NSLog(@"BMI of %.2f, has worked with us for %.f years",bmi, years);
+        employees = nil;
+
         
     }
     return 0;
