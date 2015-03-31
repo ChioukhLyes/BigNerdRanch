@@ -10,18 +10,16 @@
 
 @interface BNRPerson : NSObject
 
-{
-    //BNRPerson has two instance variables
-    float _heightInMeters;
-    int _weightInKilos;
-}
+//BNPerson has two properties
+// property (atomic) (nonatomic) fot multithreading (y)
 
-//BNRPerson has methods to read and set its instance variables
+// we can have : (nonatomic, readonly) (nonatomic, readwrite)
+// readwrite is default value.
 
-- (float) heightInMeters;
-- (void) setHeightInMeters:(float) h;
-- (int) weightInKilos;
-- (void) setWeightInKilos : (int) w;
+@property (nonatomic) float heightInMeters;
+@property (nonatomic) int weightInKilos;
+
+
 
 //BNRPerson has a method that calculates the body Lass Index
 

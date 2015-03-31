@@ -19,12 +19,12 @@ int main(int argc, const char * argv[]) {
         BNRPerson *mikey = [[BNRPerson alloc] init];
         
         //giv variables instance values
-        [mikey setWeightInKilos:96];
-        [mikey setHeightInMeters:1.8];
+        mikey.weightInKilos=96;
+        mikey.heightInMeters=1.8;
         
         //log instance variables using the getters
-        float height = [mikey heightInMeters];
-        int weight  = [mikey weightInKilos];
+        float height = mikey.heightInMeters;
+        int weight  =  mikey.weightInKilos;
         
         NSLog(@"mikey is %.2f meters and weights %d kg", height, weight);
         
