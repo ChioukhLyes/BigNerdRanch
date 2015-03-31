@@ -18,7 +18,11 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: $%u>", self.label, self.resaleValue];
+    if(self.holder){
+        return [NSString stringWithFormat:@"<%@: $%u, assigned to %@>", self.label, self.resaleValue, self.holder];
+    }else {
+        return [NSString stringWithFormat:@"<%@: $%u>", self.label, self.resaleValue];
+    }
 }
 
 @end

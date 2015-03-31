@@ -6,13 +6,22 @@
 //  Copyright (c) 2015 Excilys. All rights reserved.
 //
 
+// whene we declare property here : only instace can get access to it, if object non-instance of BNREmployee cant not access : compiler error : not visible @interface...
+
 #import <Foundation/Foundation.h>
 #import "BNREmployee.h"
 #import "BNRAsset.h"
 
+@interface  BNREmployee ()
+{
+  NSMutableArray *_assets;
+}
+
+@property (nonatomic) unsigned int officeAlarmeCode;
+
+@end
+
 @implementation BNREmployee
-
-
 
 //Accessor for assets properties
 
@@ -30,6 +39,7 @@
         _assets = [[NSMutableArray alloc] init];
     }
     [_assets addObject:a];
+    a.holder = self;
 }
 
 - (unsigned int)valueOfAssets
