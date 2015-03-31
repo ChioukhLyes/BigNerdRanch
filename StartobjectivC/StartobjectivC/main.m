@@ -6,6 +6,17 @@
 //  Copyright (c) 2015 Excilys. All rights reserved.
 //
 
+
+/**
+ * Nested message : [[NSDate] timeIntervalSince1970]
+ * Insted
+ * *now = [NSDate date]
+ * seconds [now timeIntervalSince1970]
+ *
+ *
+ * WITH CONVENIENCE
+ * we call : *now = [[NSDate alloc] init], no diff with "date"
+ **/
 #import <Foundation/Foundation.h>
 
 int main(int argc, const char * argv[]) {
@@ -50,6 +61,26 @@ int main(int argc, const char * argv[]) {
         
         NSString *name = [host localizedName];
         NSLog(@"Name is : %@\n",name);
+        
+        //Challenge chap 14
+        NSDate *laterDate = [[NSDate alloc] init];
+        NSDate *earlierDate = [[NSDate alloc] init];
+        double seconde = [laterDate timeIntervalSinceDate:earlierDate];
+        
+        NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *comp = [[NSDateComponents alloc] init];
+        [comp setYear:1989];
+        [comp setMonth:9];
+        [comp setDay:28];
+        [comp setHour:14];
+        [comp setMinute:10];
+        [comp setSecond:0];
+        
+        NSDate *datebirth = [cal dateFromComponents:comp];
+        
+        NSLog(@"Date of birth %@", datebirth);
+        
+        
         
     }
     return 0;
