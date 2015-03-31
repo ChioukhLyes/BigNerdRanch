@@ -18,6 +18,11 @@
  * we call : *now = [[NSDate alloc] init], no diff with "date"
  **/
 #import <Foundation/Foundation.h>
+#include <readline/readline.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -59,13 +64,13 @@ int main(int argc, const char * argv[]) {
         //Challenge Chap 13
         NSHost *host = [NSHost currentHost];
         
-        NSString *name = [host localizedName];
-        NSLog(@"Name is : %@\n",name);
+        NSString *name1 = [host localizedName];
+        NSLog(@"Name is : %@\n",name1);
         
         //Challenge chap 14
-        NSDate *laterDate = [[NSDate alloc] init];
-        NSDate *earlierDate = [[NSDate alloc] init];
-        double seconde = [laterDate timeIntervalSinceDate:earlierDate];
+        //NSDate *laterDate = [[NSDate alloc] init];
+        //NSDate *earlierDate = [[NSDate alloc] init];
+        //double seconde = [laterDate timeIntervalSinceDate:earlierDate];
         
         NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         NSDateComponents *comp = [[NSDateComponents alloc] init];
@@ -80,6 +85,22 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Date of birth %@", datebirth);
         
+        //NO CHALLENGE FOR CHAPTER 15 :-D
+        
+        
+        //Challenge chap 16 - 1
+        
+        //        Declaration
+        //          SWIFT
+        //          func caseInsensitiveCompare(_ aString: String) -> NSComparisonResult
+        //        OBJECTIVE-C
+        //          (NSComparisonResult)caseInsensitiveCompare:(NSString *)aString
+
+        
+        //Challenge chap 16 - 2
+        const char *given = readline(NULL);
+        NSString *name =  [NSString stringWithUTF8String:given];
+        NSLog(@"%@ is cool!\n", name);
         
         
     }
