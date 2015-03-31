@@ -7,101 +7,70 @@
 //
 
 
-/**
- * Nested message : [[NSDate] timeIntervalSince1970]
- * Insted
- * *now = [NSDate date]
- * seconds [now timeIntervalSince1970]
- *
- *
- * WITH CONVENIENCE
- * we call : *now = [[NSDate alloc] init], no diff with "date"
- **/
+// NSMutableArray is subclass of NSArray / we cans use add, remove ...
 #import <Foundation/Foundation.h>
 #include <readline/readline.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        NSDate *now = [NSDate date]; //sending message to NSDate to execute "date" methode
+        //NDSate objects
+        NSDate *now = [[NSDate alloc] init]; //sending message to NSDate to execute "date" methode
+        NSDate *tomorrow = [now  dateByAddingTimeInterval:24.0*60.0*60.0];
+        NSDate *yesterday = [now dateByAddingTimeInterval:-24.0*60.0*60.0];
         
-        /**
-         * The NSDate is receiver
-         * The selector is 'date'
-         * Message  = date
-         * date is a class method
-         **/
+        //        NSLog(@"%@ is cool!\n", name);
         
+        //Array wich contains all NSDates
+        NSArray *datelist = @[now, tomorrow, yesterday];
         
+        //without for
+        NSLog(@"List of days %@", datelist);
+        NSLog(@"F-irst %@", datelist[0]);
+        NSLog(@"Table date size %lu", [datelist count]);
         
-        /**
-         * timeIntervalSince1970 is an instace method
-         *
-         **/
+        //with for / enumeration
         
-        /**
-         * Impossible to sent timeIntervalSince1970 to NSDate, or date to an instance.
-         *
-         */
-        double seconds = [now timeIntervalSince1970];
-        NSLog(@"date %f\n",seconds);
+        for (NSDate *date in datelist){
+            NSLog(@"Elemenet : %@", date);
+        }
         
-        /*Errors*/
-        //        NSDate *testnow = [now date];
-        //        double seconds = [NSDate timeIntervalSince1970];
-        //        NSLog(@"date %f\n",seconds);
-        //        testnow = [now timeintervalsince1970];
+        //Challenge 17-1
+        NSMutableArray *datelist1 = [[NSMutableArray alloc] init];
+        NSString *bread = @("Load of bread");
+        NSString *milk = @("Container of milk");
+        NSString *butter = @("Strick of butter");
         
-        NSLog(@"date %p\n",now);
-        NSLog(@"date %@\n",now);
-        NSLog(@"date %f\n",seconds);
-        NSLog(@"Hello, World!");
+        [datelist1 addObject:bread];
+        [datelist1 addObject:milk];
+        [datelist1 addObject:butter];
         
-        //Challenge Chap 13
-        NSHost *host = [NSHost currentHost];
-        
-        NSString *name1 = [host localizedName];
-        NSLog(@"Name is : %@\n",name1);
-        
-        //Challenge chap 14
-        //NSDate *laterDate = [[NSDate alloc] init];
-        //NSDate *earlierDate = [[NSDate alloc] init];
-        //double seconde = [laterDate timeIntervalSinceDate:earlierDate];
-        
-        NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *comp = [[NSDateComponents alloc] init];
-        [comp setYear:1989];
-        [comp setMonth:9];
-        [comp setDay:28];
-        [comp setHour:14];
-        [comp setMinute:10];
-        [comp setSecond:0];
-        
-        NSDate *datebirth = [cal dateFromComponents:comp];
-        
-        NSLog(@"Date of birth %@", datebirth);
-        
-        //NO CHALLENGE FOR CHAPTER 15 :-D
+        for (NSDate *date in datelist1){
+            NSLog(@"Elemenet : %@", date);
+        }
         
         
-        //Challenge chap 16 - 1
+        //Challenge 17-2
         
-        //        Declaration
-        //          SWIFT
-        //          func caseInsensitiveCompare(_ aString: String) -> NSComparisonResult
-        //        OBJECTIVE-C
-        //          (NSComparisonResult)caseInsensitiveCompare:(NSString *)aString
-
+        NSString *nameString = [NSString stringWithContentsOfFile:@"/usr/share/dict/words" encoding:NSUTF8StringEncoding error:NULL];
         
-        //Challenge chap 16 - 2
-        const char *given = readline(NULL);
-        NSString *name =  [NSString stringWithUTF8String:given];
-        NSLog(@"%@ is cool!\n", name);
+        NSString *propernameString = [NSString stringWithContentsOfFile:@"/usr/share/dict/propernames" encoding:NSUTF8StringEncoding error:NULL];
         
+        NSArray *names = [nameString componentsSeparatedByString:@"\n"];
+        NSArray *propernames = [propernameString componentsSeparatedByString:@"\n"];
+        
+        for(NSString *n in names){
+            
+            for(NSString *n1 in propernames){
+                
+                
+                NSRange r1 = [n1 rangeOfString:n options:NSCaseInsensitiveSearch];
+                
+                if(r1.location != NSNotFound){
+                    NSLog(@"%@", n);
+                }
+            }
+        }
         
     }
     return 0;
