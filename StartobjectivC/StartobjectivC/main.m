@@ -15,28 +15,36 @@
 int main(int argc, const char * argv[]) {
     
     @autoreleasepool {
+        NSMutableArray *stocks = [[NSMutableArray alloc] init];
         
-        BNRLogger *logger = [[BNRLogger alloc] init];
+        //dictionnary
+        NSMutableDictionary *stock = [NSMutableDictionary dictionary];
+        stock[@"symbol"] = @"AAPL";
+        stock[@"shares"] = @200;
+        stock[@"Data"] = [@"Data" dataUsingEncoding:NSUTF8StringEncoding];
+        stock[@"Date"] = [NSDate date];
+        stock[@"Value"] = @15;
+        stock[@"Cool"] = @NO;
         
-        [[NSNotificationCenter defaultCenter] addObserver:logger
-                                                 selector:@selector(zoneChange:)
-                                                     name:NSSystemTimeZoneDidChangeNotification
-                                                   object:nil];
+        [stocks addObject:stock];
         
-        NSURL *url = [NSURL URLWithString:@"http://www.gutenberg.org/cache/epub/205/pg205.txt"];
+        //array
+        NSMutableArray *stock1 = [NSMutableArray array];
+        NSString *bread = @("Load of bread");
+        NSString *milk = @("Container of milk");
+        [stock1 addObject:bread];
+        [stock1 addObject:milk];
+        [stocks addObject:stock1];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        //string
+        NSString *bread1 = @("Load of bread string");
+        [stocks addObject:bread1];
         
-        __unused NSURLConnection *fetchConn = [[NSURLConnection alloc] initWithRequest:request
-                                                                              delegate:logger
-                                                                      startImmediately:YES];
+        //data
+        NSMutableData *stock2 = [NSMutableData dataWithContentsOfFile:@"/tmp/google.png"];
+        [stocks addObject:stock2];
         
-        __unused NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                                                   target:logger
-                                                                 selector:@selector(updateLastTime:)
-                                                                 userInfo:nil
-                                                                  repeats:YES];
-        [[NSRunLoop currentRunLoop] run];
+        [stocks writeToFile:@"/tmp/stocks.plist" atomically:YES];
         
     }
     return 0;

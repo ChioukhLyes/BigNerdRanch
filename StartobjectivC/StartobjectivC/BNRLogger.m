@@ -6,6 +6,12 @@
 //  Copyright (c) 2015 Excilys. All rights reserved.
 //
 
+// Protocols is like 'INTERFACESS' in java, they have @required methods to implements and @optional method
+
+// When you send message to an object and that method is not implemented by the object => program will crash
+
+// To avoid this situation : we used responseToTeletoc: implemented in NSObject, this method ask an object if it implements a method or not !
+
 #import "BNRLogger.h"
 
 
