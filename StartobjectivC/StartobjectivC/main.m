@@ -13,84 +13,58 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // Create an array of BNREmployee objects
-        NSMutableArray *employees = [[NSMutableArray alloc] init];
+        // Create
         
-        NSMutableDictionary *executives = [[NSMutableDictionary alloc]init];
+        NSLog(@"\u03c0 is %f", M_PI);
         
-        for (int i = 0; i < 10; i++) {
-            //Create an instance of BNREmployee
-            BNREmployee *mikey = [[BNREmployee alloc] init];
-            
-            // Give the instance variables interesting values
-            mikey.weightInKilos = 90 + i;
-            mikey.heightInMeters = 1.8 - i/10.0;
-            mikey.employeeID = i;
+        NSMutableString *str = [[NSMutableString alloc] init];
+        NSError *erro;
         
-            //Put  employee in the employees array
-            [employees addObject:mikey];
-            
-            //Is this the first employee ?
-            if(i==0){
-                [executives setObject:mikey forKey:@"CEO"];
-            }
-            
-            //Is this the second employee ?
-            if(i==1){
-                [executives setObject:mikey forKey:@"CTO"];
-            }
-            
+        for (int i=0; i<10; i++) {
+            [str appendString:@"Lyes is cool! \n"];
         }
         
-        NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+        BOOL success = [str writeToFile:@"/Users/chioukhlyes/Desktop/cool.txt" atomically:YES encoding:NSUTF8StringEncoding error:NULL];
         
-        for (int i = 0; i < 10; i++) {
-            
-            BNRAsset *asset = [[BNRAsset alloc] init];
-            NSString *currentLabel = [NSString stringWithFormat:@"laptop %d", i];
-            asset.label = currentLabel;
-            asset.resaleValue = 350 + i * 17;
-            
-            NSUInteger randomIndex = random() % [employees count];
-            
-            BNREmployee *randomEmployee = [employees objectAtIndex:randomIndex];
         
-            [randomEmployee addAssets:asset];
-            
-            // Assign the asset to the employee
-            [randomEmployee addAssets:asset];
+        if(success){
+            NSLog(@"done writing /Users/chioukhlyes/Desktop/cool.txt");
+        } else {
+            NSLog(@"writing /Users/chioukhlyes/Desktop/cool.txt failed : %@", [erro localizedDescription]);
         }
-        
-        //Sorting
-        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets"
-                                                              ascending:YES];
-        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeeID"
-                                                              ascending:YES];
-        [employees sortUsingDescriptors:@[voa, eid]];
-
-        
-        NSLog(@"Employees: %@", employees);
-        NSLog(@"Giving up ownership of one employee");
-        
-        [employees removeObjectAtIndex:5];
-        NSLog(@"Giving up ownership of arrays");
-        
-        NSLog(@"executive: %@", executives);
-        // Print out the CEO's information
-        NSLog(@"CEO: %@", executives[@"CEO"]);
-        executives = nil;
-        
-        
-        //Filtring
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 70"];
-        NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
-        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
-        toBeReclaimed = nil;
-        
-        employees = nil;
-
         
     }
-    sleep(100);
+    
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.google.com/images/logos/ps_logo2.png"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:NULL
+                                                     error:&error];
+    if (!data) {
+        NSLog(@"fetch failed: %@", [error localizedDescription]);
+        return 1;
+    }
+    
+    NSLog(@"The file is %lu bytes", (unsigned long)[data length]);
+    
+    BOOL written = [data writeToFile:@"/tmp/google.png"
+                             options:NSDataWritingAtomic
+                               error:&error];
+    
+    if (!written) {
+        NSLog(@"write failed: %@", [error localizedDescription]);
+        return 1;
+    }
+    
+    NSLog(@"Success!");
+    
+    NSData *readData = [NSData dataWithContentsOfFile:@"/tmp/google.png"];
+    NSLog(@"The file read from the disk has %lu bytes", (unsigned long)[readData length]);
+
+        
+    
+ 
     return 0;
 }
