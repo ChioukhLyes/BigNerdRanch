@@ -8,13 +8,21 @@
 
 // whene we declare property here : only instace can get access to it, if object non-instance of BNREmployee cant not access : compiler error : not visible @interface...
 
+// Equals = same object (can be an other pointer)
+// Identical = same object and same pointer
+
+//NSDictionary / NSMutablesDictionary : set of key-value
+// key = String
+// value = any sort of object 
+
+
 #import <Foundation/Foundation.h>
 #import "BNREmployee.h"
 #import "BNRAsset.h"
 
 @interface  BNREmployee ()
 {
-  NSMutableArray *_assets;
+  NSMutableSet *_assets;
 }
 
 @property (nonatomic) unsigned int officeAlarmeCode;
@@ -36,7 +44,7 @@
 - (void) addAssets:(BNRAsset *)a
 {
     if(!_assets){
-        _assets = [[NSMutableArray alloc] init];
+        _assets = [[NSMutableSet alloc] init];
     }
     [_assets addObject:a];
     a.holder = self;

@@ -16,6 +16,8 @@ int main(int argc, const char * argv[]) {
         // Create an array of BNREmployee objects
         NSMutableArray *employees = [[NSMutableArray alloc] init];
         
+        NSMutableDictionary *executives = [[NSMutableDictionary alloc]init];
+        
         for (int i = 0; i < 10; i++) {
             //Create an instance of BNREmployee
             BNREmployee *mikey = [[BNREmployee alloc] init];
@@ -27,7 +29,20 @@ int main(int argc, const char * argv[]) {
         
             //Put  employee in the employees array
             [employees addObject:mikey];
+            
+            //Is this the first employee ?
+            if(i==0){
+                [executives setObject:mikey forKey:@"CEO"];
+            }
+            
+            //Is this the second employee ?
+            if(i==1){
+                [executives setObject:mikey forKey:@"CTO"];
+            }
+            
         }
+        
+        NSMutableArray *allAssets = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < 10; i++) {
             
@@ -41,13 +56,36 @@ int main(int argc, const char * argv[]) {
             BNREmployee *randomEmployee = [employees objectAtIndex:randomIndex];
         
             [randomEmployee addAssets:asset];
+            
+            // Assign the asset to the employee
+            [randomEmployee addAssets:asset];
         }
+        
+        //Sorting
+        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets"
+                                                              ascending:YES];
+        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeeID"
+                                                              ascending:YES];
+        [employees sortUsingDescriptors:@[voa, eid]];
+
         
         NSLog(@"Employees: %@", employees);
         NSLog(@"Giving up ownership of one employee");
         
         [employees removeObjectAtIndex:5];
         NSLog(@"Giving up ownership of arrays");
+        
+        NSLog(@"executive: %@", executives);
+        // Print out the CEO's information
+        NSLog(@"CEO: %@", executives[@"CEO"]);
+        executives = nil;
+        
+        
+        //Filtring
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 70"];
+        NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+        toBeReclaimed = nil;
         
         employees = nil;
 
