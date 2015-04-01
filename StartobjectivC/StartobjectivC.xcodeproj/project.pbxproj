@@ -11,6 +11,7 @@
 		D937C8C61ACACE5200E73A01 /* BNRPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = D937C8C51ACACE5200E73A01 /* BNRPerson.m */; };
 		D937C8CC1ACADB6C00E73A01 /* BNREmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = D937C8CB1ACADB6C00E73A01 /* BNREmployee.m */; };
 		D937C8CF1ACAED1F00E73A01 /* BNRAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = D937C8CE1ACAED1F00E73A01 /* BNRAsset.m */; };
+		D9C2B7701ACBEBB7002E6889 /* BNRLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C2B76F1ACBEBB7002E6889 /* BNRLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		D937C8CB1ACADB6C00E73A01 /* BNREmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNREmployee.m; sourceTree = "<group>"; };
 		D937C8CD1ACAED1F00E73A01 /* BNRAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRAsset.h; sourceTree = "<group>"; };
 		D937C8CE1ACAED1F00E73A01 /* BNRAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRAsset.m; sourceTree = "<group>"; };
+		D9C2B76E1ACBEBB7002E6889 /* BNRLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLogger.h; sourceTree = "<group>"; };
+		D9C2B76F1ACBEBB7002E6889 /* BNRLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				D929FBBF1AC99BD7007C9736 /* main.m */,
+				D9C2B76E1ACBEBB7002E6889 /* BNRLogger.h */,
+				D9C2B76F1ACBEBB7002E6889 /* BNRLogger.m */,
 				D937C8CD1ACAED1F00E73A01 /* BNRAsset.h */,
 				D937C8CE1ACAED1F00E73A01 /* BNRAsset.m */,
 				D937C8C41ACACE5200E73A01 /* BNRPerson.h */,
@@ -133,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C2B7701ACBEBB7002E6889 /* BNRLogger.m in Sources */,
 				D937C8CC1ACADB6C00E73A01 /* BNREmployee.m in Sources */,
 				D937C8C31ACAA7C800E73A01 /* main.m in Sources */,
 				D937C8C61ACACE5200E73A01 /* BNRPerson.m in Sources */,
